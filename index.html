@@ -71,7 +71,7 @@
     // As described in the README, this is just a proof of concept
     if (mostRecentMovementOverall(4000) > 40) { // TODgO: haven't tested this, 1,000 so it's a longer time
       setStatus("driving or other form of transportation")  //?????????????????
-    } 
+    } //그냥 어떤 값이 변한다고 만 쓰면 안될 거 같은데...
     else if (historicOrientation["z"].last() > 70 || historicOrientation["z"].last() < -70) {
       setStatus("lying in bed sideways, or taking a landscape picture")
     } 
