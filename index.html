@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width">
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta name="author" content="Felix Krause">
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width"> <!--뷰포트 너비-->
+    <meta name="viewport" content="initial-scale=1.0"> <!--뷰포트 너비의 비율-->
+    <meta name="author" content="Felix Krause"> <!--문서 저작자-->
+    <meta charset="UTF-8">  <!--페이지 문자 인코딩 선언 -->
   </head>
   <body id="body">
     <h3>What's the user doing?</h3>
@@ -38,7 +38,7 @@
 
 <script type="text/javascript">
   // via https://stackoverflow.com/questions/9050345/
-  if (!Array.prototype.last) {
+  if (!Array.prototype.last) { //배열 마지막 인덱스 항목 접근 -> 값
     Array.prototype.last = function() {
       return this[this.length - 1];
   }
@@ -71,25 +71,25 @@
     // As described in the README, this is just a proof of concept
     if (mostRecentMovementOverall(4000) > 40) { // TODgO: haven't tested this, 1,000 so it's a longer time
       setStatus("driving or other form of transportation")  //?????????????????
-    } //그냥 어떤 값이 변한다고 만 쓰면 안될 거 같은데...
+    } //모바일 기기를 양쪽 가로로 눕혔을 때
     else if (historicOrientation["z"].last() > 70 || historicOrientation["z"].last() < -70) {
       setStatus("lying in bed sideways, or taking a landscape picture")
-    } 
+    }  //뒤집어뒀을 때
     else if (historicOrientation["y"].last() > 160 || historicOrientation["y"].last() < -160) {
       setStatus("lying on your back, with your phone up")
-    } 
+    }   //세로로 들고 오른쪽으로 살짝 돌렸을 때
     else if (historicOrientation["y"].last() >= 30 && historicOrientation["y"].last() < 70) {
-      if (movement > 18) {
+      if (movement > 18) {  //움직임이 18 넘게 존재할 때
         setStatus("using your phone while walking")
-      } else {
+      } else {  //앉거나 서서 기기를 움직일 때
         setStatus("using your phone, sitting or standing")
       }
-    } 
+    } //세로로 들고 핸드폰을 거의 옆면으로 다 돌려을 때? 
     else if (historicOrientation["y"].last() >= 70 && historicOrientation["y"].last() < 95) {
       if (movement > 18) {
         setStatus("using your phone while walking")
       } 
-      else {
+      else {  //사진을 찍고 있을 때
         setStatus("taking a picture")
       }
     } 
@@ -97,10 +97,10 @@
       setStatus("taking a selfie")
     } 
     else if (Math.round(historicOrientation["z"].last()) == 0 && Math.round(historicOrientation["y"].last()) == 0) {
-      setStatus("using the phone on a table")
+      setStatus("using the phone on a table") //테이블 위에 위를 보게 뒀을 때
     } 
     else {
-      if (movement > 18) {
+      if (movement > 18) {  
         setStatus("using your phone while walking")
       } 
       else {
@@ -136,11 +136,11 @@
   if (isMobile != null) { //4종류 중 존재 시
     window.addEventListener("devicemotion", motion, false); //motion 함수 실행
 
-    function motion(event) { //???????????
+    function motion(event) { //????? 150 ?????? 
       document.getElementById("motionX").textContent = (mostRecentMovement(historicMotion["x"], 150, false)).toFixed(2)
       document.getElementById("motionY").textContent = (mostRecentMovement(historicMotion["y"], 150, false)).toFixed(2)
       document.getElementById("motionZ").textContent = (mostRecentMovement(historicMotion["z"], 150, false)).toFixed(2)
-      //각 좌표의 가속값 추가?
+      //각 좌표의 가속값 추가
       historicMotion["x"].push(event.acceleration.x) 
       historicMotion["y"].push(event.acceleration.y)
       historicMotion["z"].push(event.acceleration.z)
@@ -152,7 +152,7 @@
       document.getElementById("orientationX").textContent = Math.round(event.alpha) //값을 반올림한 값과 가장 가까운 정수
       document.getElementById("orientationY").textContent = Math.round(event.beta)
       document.getElementById("orientationZ").textContent = Math.round(event.gamma)
-
+      //각 좌표의 방향값 추가
       historicOrientation["x"].push(event.alpha)
       historicOrientation["y"].push(event.beta)
       historicOrientation["z"].push(event.gamma)
@@ -180,7 +180,7 @@
   }
   table {  
     color: #333;
-    border-collapse: collapse; /*표 붙어있음*/
+    border-collapse: collapse; /*표 붙이기*/
     border-spacing: 0; 
   }
 
